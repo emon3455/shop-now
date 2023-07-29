@@ -1,11 +1,13 @@
 "use client"
 
 import Image from 'next/image';
+import Link from 'next/link';
 import React, { useEffect, useState } from 'react';
 
 
 const Navbar = () => {
 
+    const user =null;
     const [theme, setTheme] = useState("light");
 
 
@@ -25,6 +27,25 @@ const Navbar = () => {
         // add custom data-theme attribute to html tag required to update theme using DaisyUI
         document.querySelector("html").setAttribute("data-theme", localTheme);
     }, [theme]);
+
+
+    const navMenu=<>
+        const navMenu = <>
+        <li><Link href="/">Home</Link></li>
+        <li><Link href="/Products">Products</Link></li>
+        <li><Link href="/shop/pizza">Our Shop</Link></li>
+        {
+            user
+                ?
+                <>
+                    <li><span className="bg-warning rounded-xl font-bold py-0 my-auto btn-sm">Logout</span></li>
+                </>
+                :
+                <li><Link href="/login">Log In</Link></li>
+        }
+    </>
+    </>
+
 
     return (
         <div className="bg-base-200">
