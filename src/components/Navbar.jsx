@@ -1,14 +1,23 @@
 "use client"
 
+import useAuth from '@/hooks/useAuth';
 import Image from 'next/image';
 import Link from 'next/link';
 import React, { useEffect, useState } from 'react';
+import { toast } from 'react-hot-toast';
+
 
 
 const Navbar = () => {
 
-    const user =null;
-    const [theme, setTheme] = useState("light");
+    // const user = null;
+
+    const { user, logout } = useAuth();
+    const { uid, displayname, photoURL } = user || {};
+
+    const [theme, setTheme] = useState(
+        localStorage.getItem("theme") ? localStorage.getItem("theme") : "light"
+    );
 
 
     // update state on toggle
@@ -20,6 +29,7 @@ const Navbar = () => {
         }
     };
 
+
     // set theme state in localstorage on mount & also update localstorage on state change
     useEffect(() => {
         localStorage.setItem("theme", theme);
@@ -29,21 +39,25 @@ const Navbar = () => {
     }, [theme]);
 
 
-    const navMenu=<>
-        const navMenu = <>
+    const handleLogout = async () => {
+        const toastId = toast.loading("Loading...");
+        try {
+            await logout();
+            toast.dismiss(toastId);
+            toast.success("Successfully logout!");
+
+        } catch (error) {
+            toast.error("Successfully not logout!");
+            toast.dismiss(toastId);
+        }
+    };
+
+
+    const navMenu = <>
         <li><Link href="/">Home</Link></li>
         <li><Link href="/Products">Products</Link></li>
-        <li><Link href="/shop/pizza">Our Shop</Link></li>
-        {
-            user
-                ?
-                <>
-                    <li><span className="bg-warning rounded-xl font-bold py-0 my-auto btn-sm">Logout</span></li>
-                </>
-                :
-                <li><Link href="/login">Log In</Link></li>
-        }
-    </>
+        <li><Link href="/shop">Our Shop</Link></li>
+        <li><Link href="/login">Log In</Link></li>
     </>
 
 
@@ -55,10 +69,8 @@ const Navbar = () => {
                         <label tabIndex={0} className="btn btn-ghost lg:hidden">
                             <svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M4 6h16M4 12h8m-8 6h16" /></svg>
                         </label>
-                        <ul tabIndex={0} className="menu menu-sm dropdown-content mt-3 z-[1] p-2 shadow bg-base-100 rounded-box w-52">
-                            <li><a>Item 1</a></li>
-                            <li><a>Item 2</a></li>
-                            <li><a>Item 3</a></li>
+                        <ul tabIndex={0} className="menu menu-sm dropdown-content space-y-1 mt-3 z-[1] p-2 shadow bg-base-100 rounded-box w-52">
+                            {navMenu}
                         </ul>
                     </div>
                     <a className="btn btn-ghost normal-case text-xl">Shop-Now</a>
@@ -66,10 +78,8 @@ const Navbar = () => {
 
                 <div className="navbar-end hidden lg:flex items-center">
 
-                    <ul className="menu menu-horizontal px-1">
-                        <li><a>Item 1</a></li>
-                        <li><a>Item 2</a></li>
-                        <li><a>Item 3</a></li>
+                    <ul className="menu menu-horizontal px-1 space-x-1">
+                        {navMenu}
                     </ul>
                 </div>
 
@@ -92,23 +102,24 @@ const Navbar = () => {
                         </div>
                     </div>
 
-                    {/* <div className="dropdown dropdown-end">
-                    <label tabIndex={0} className="btn btn-ghost btn-circle avatar">
-                        <div className="w-10 rounded-full">
-                            <Image
-                                src="/images/stock/photo-1534528741775-53994a69daeb.jpg"
-                                alt="user picture"
-                                width={40}
-                                height={40}
-                            />
-                        </div>
-                    </label>
-                    <ul tabIndex={0} className="menu menu-sm dropdown-content mt-3 z-[1] p-2 shadow bg-base-100 rounded-box w-52">
+                    {uid && <div className="dropdown dropdown-end">
+                        <label tabIndex={0} className="btn btn-ghost btn-circle avatar">
+                            <div className="w-10 rounded-full">
+                                <Image
+                                    alt="user picture"
+                                    src={photoURL}
+                                    title={displayname}
+                                    width={40}
+                                    height={40}
+                                />
+                            </div>
+                        </label>
+                        <ul tabIndex={0} className="menu menu-sm dropdown-content mt-3 z-[1] p-2 shadow bg-base-100 rounded-box w-52">
 
-                        <li><a>Settings</a></li>
-                        <li><a>Logout</a></li>
-                    </ul>
-                </div> */}
+                            <li><a>Settings</a></li>
+                            <li onClick={handleLogout}><a>Logout</a></li>
+                        </ul>
+                    </div>}
 
                     <div className="">
                         <button>

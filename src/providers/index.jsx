@@ -1,5 +1,11 @@
+"use client"
+
+
 const { default: AuthProvider } = require("./AuthProviders")
 
-const Providers = ({children})=>{
-    return <AuthProvider>{children}</AuthProvider>
+
+export const Providers = ({ children }) => {
+    return <AuthProvider>
+        {children}
+    </AuthProvider>
 }

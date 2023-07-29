@@ -10,7 +10,7 @@ import SingleHeroSlider from "./SingleHeroSlider";
 
 const HeroSlider = () => {
   return (
-    <section className="main-slider max-w-screen-xl">
+    <section className="main-slider max-w-screen-xl relative -z-10">
       <Swiper
         slidesPerView={1}
         loop

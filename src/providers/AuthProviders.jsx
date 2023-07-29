@@ -1,4 +1,4 @@
-import AuthContext from "@/contexts/AuthContext";
+import AuthContext from "@/context/AuthContext";
 import auth, { googleProvider } from "@/firebase/firebase.auth";
 import {
   createUserWithEmailAndPassword,
@@ -65,3 +65,6 @@ const AuthProvider = ({ children }) => {
 };
 
 export default AuthProvider;
+
+
+
