@@ -8,9 +8,9 @@ import { Autoplay, EffectFade, Navigation } from "swiper/modules";
 import "swiper/css/bundle";
 import SingleHeroSlider from "./SingleHeroSlider";
 
-const HeroSlider = () => {
-  return (
-    <section className="main-slider max-w-screen-xl relative -z-10">
+const Banner = () => {
+    return (
+        <section className="main-slider max-w-screen-xl relative -z-10">
       <Swiper
         slidesPerView={1}
         loop
@@ -26,7 +26,7 @@ const HeroSlider = () => {
         ))}
       </Swiper>
     </section>
-  );
+    );
 };
 
-export default HeroSlider;
+export default Banner;

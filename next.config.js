@@ -2,17 +2,17 @@
 const nextConfig = {
     reactStrictMode: true,
     images: {
-        remotePatterns: [
-            {
-                protocol: "https",
-                hostname: "lh3.googleusercontent.com",
-            },
-            {
-                protocol: "https",
-                hostname: "i.ibb.co",
-            },
-        ],
+      remotePatterns: [
+        {
+          protocol: "https",
+          hostname: "lh3.googleusercontent.com",
+        },
+        {
+          protocol: "https",
+          hostname: "i.ibb.co",
+        },
+      ],
     },
-};
-
-module.exports = nextConfig;
+  };
+  
+  module.exports = nextConfig;

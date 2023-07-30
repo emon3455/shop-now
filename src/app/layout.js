@@ -1,9 +1,9 @@
-import Navbar from '@/components/Navbar'
+import Navbar from '@/components/NavBar'
 import './globals.css'
 import { Inter } from 'next/font/google'
 import Footer from '@/components/Footer'
-import { Providers } from '@/providers'
 import Toaster from '@/components/Toast'
+import AuthProvider from '@/providers/AuthProvider'
 
 const inter = Inter({ subsets: ['latin'] })
 
@@ -14,20 +14,12 @@ export const metadata = {
 
 export default function RootLayout({ children }) {
   return (
-    <html lang="en">
-      <body className={`${inter.className} `}>
+    <html lang="en" data-theme="dark" className="transition-all">
+      <body  className={inter.className}>
 
-        <Providers>
-
-          <Navbar></Navbar>
-
-          <div className="max-w-7xl mx-auto">
-            {children}
-          </div>
-
-          <Footer></Footer>
-
-        </Providers>
+        <AuthProvider>
+          {children}
+        </AuthProvider>
 
         <Toaster />
 
