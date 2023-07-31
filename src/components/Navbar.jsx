@@ -12,7 +12,6 @@ import { startTransition } from 'react';
 const Navbar = () => {
 
     const { user, logOut } = useAuth();
-    console.log(user);
 
     const { replace, refresh } = useRouter();
     const path = usePathname();

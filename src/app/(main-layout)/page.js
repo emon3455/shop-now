@@ -1,4 +1,5 @@
 import Banner from '@/components/home/Banner';
+import Categories from '@/components/home/Categories';
 import React from 'react';
 
 const HomePage = () => {
@@ -7,6 +8,8 @@ const HomePage = () => {
 
       <Banner></Banner>
       
+      <Categories></Categories>
+
     </main>
   );
 };
