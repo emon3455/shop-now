@@ -8,7 +8,7 @@ const NotFound = () => {
       <Image
         src={notFoundImage}
         alt="not-found"
-        width={500}
+        Width={500}
         placeholder="blur"
         className="max-w-[600px] h-auto mx-auto p-2 rounded-md"
         sizes="100vw"

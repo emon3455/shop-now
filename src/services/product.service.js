@@ -1,6 +1,6 @@
 import { ObjectId } from "mongodb";
-import "server-only";
 import DbConnect from "./DbConnect";
+import "server-only";
 
 export const getProductsFromDb = async (categoryId) => {
   const db = await DbConnect();
@@ -20,6 +20,34 @@ export const getProductByIdFromDb = async (id) => {
   };
   return productsCollection.findOne(query);
 };
+
+
+export const deleteProductByIdFromDb = async(id)=>{
+  const db = await DbConnect();
+  const productsCollection = db.collection("products");
+  const query = {
+    _id: new ObjectId(id),
+  };
+  return productsCollection.deleteOne(query);
+}
+
+// export const updateProductFromDb = async(docs)=>{
+
+//   const db = await DbConnect();
+//   const productsCollection = db.collection("products");
+//   const filter = { _id: new ObjectId(data._id)}
+
+//   const updatedProduct = {
+//     $set:{
+//       title: data.title,
+//       price: data.price,
+//       ratings: data.ratings,
+//     }
+//   };
+
+//   return productsCollection.updateOne(filter, updatedProduct);
+// }
+
 
 // export const getProductsByIdsFromDb = async (ids = []) => {
 //   const db = await DbConnect();
