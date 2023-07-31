@@ -12,6 +12,7 @@ import { startTransition } from 'react';
 const Navbar = () => {
 
     const { user, logOut } = useAuth();
+    console.log(user);
 
     const { replace, refresh } = useRouter();
     const path = usePathname();
@@ -45,13 +46,14 @@ const Navbar = () => {
         <li><Link href="/products">Products</Link></li>
         <li><Link href="/profile">Profile</Link></li>
         {
-            user?.uid ?
+            user && user?.uid ?
                 <>
                     <li><Link href="/dashboard">Dashboard</Link></li>
                 </>
                 :
                 <li><Link href="/login">Log In</Link></li>
         }
+        
     </>
 
 
@@ -95,12 +97,12 @@ const Navbar = () => {
                     </div>
                 </div>
 
-                {user?.uid && <div className="dropdown dropdown-end">
+                {user && user?.uid && <div className="dropdown dropdown-end">
                     <label tabIndex={0} className="btn btn-ghost btn-circle avatar">
                         <div className="w-10 rounded-full">
                             <Image
                                 alt="user picture"
-                                src={user?.photoURL}
+                                src={user?.photoURL ? user?.photoURL : "https://i.ibb.co/5nPD3Qg/user.jpg"}
                                 title={user?.displayName}
                                 width={40}
                                 height={40}
@@ -109,7 +111,7 @@ const Navbar = () => {
                     </label>
                     <ul tabIndex={0} className="menu menu-sm dropdown-content mt-3 z-[1] p-2 shadow bg-base-100 rounded-box w-52">
 
-                        <li> <span className='text-center'>{user?.displayName}</span> </li>
+                        <li> <span className='text-center'>{user?.displayName ? user?.displayName :"Anonymous"}</span> </li>
                         <hr />
                         <li onClick={handleLogout}><a>Logout</a></li>
                     </ul>

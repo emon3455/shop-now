@@ -1,8 +1,8 @@
-import Footer from '@/components/Footer';
-import Navbar from '@/components/Navbar';
-import AuthProvider from '@/providers/AuthProvider';
+
 import React from 'react';
 import Toaster from '@/components/Toast'
+import Navbar from '@/components/NavBar';
+import Footer from '@/components/Footer';
 
 const layout = ({ children }) => {
     return (
