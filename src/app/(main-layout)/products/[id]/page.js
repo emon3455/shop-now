@@ -11,7 +11,7 @@ const ProductDetails = async ({ params: { id } }) => {
     product;
 
   return (
-    <div className="grid grid-cols-1 md:grid-cols-3 gap-3">
+    <div className="grid grid-cols-1 md:grid-cols-3 gap-3 p-2">
       <figure>
         <Image
           src={imageUrls[0]}
@@ -44,6 +44,7 @@ const ProductDetails = async ({ params: { id } }) => {
           ))}
         </div>
         {/* <AddToCartBtn id={id} /> */}
+        <button className="btn btn-primary mt-3">Add To Cart</button>
       </div>
     </div>
   );
