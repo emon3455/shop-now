@@ -1,6 +1,4 @@
-
 import React from 'react';
-import Toaster from '@/components/Toast'
 import Navbar from '@/components/Navbar';
 import Footer from '@/components/Footer';
 
@@ -19,8 +17,6 @@ const layout = ({ children }) => {
             <footer className="bg-base-200">
                 <Footer></Footer>
             </footer>
-
-            <Toaster />
 
 
         </div>
