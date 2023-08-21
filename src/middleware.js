@@ -12,10 +12,17 @@ export const middleware = async (request) => {
     }
     const secret = new TextEncoder().encode(process.env.jwt_secret);
     await jwtVerify(cookie.split("Bearer ")[1], secret);
+
+    // Make product details route (/products/:id) private
+    // if (pathname.startsWith("/products") && pathname !== "/products") {
+    //   return NextResponse.next();
+    // }
+
     if (isPath("/login") || isPath("/signup")) {
       return NextResponse.redirect(new URL("/", request.url));
     }
     return NextResponse.next();
+
   } catch (error) {
     if (isPath("/login") || isPath("/signup")) {
       return NextResponse.next();
@@ -29,7 +36,7 @@ export const middleware = async (request) => {
 // See "Matching Paths" below to learn more
 export const config = {
   matcher: [
-    "/profile/:path*",
+    // "/products/:path*",
     "/dashboard/:path*",
     "/login/:path*",
     "/signup/:path*",
